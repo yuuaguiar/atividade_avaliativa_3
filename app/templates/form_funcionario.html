@@ -1,19 +1,32 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load django_bootstrap5 %}
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Funcionários</title>
-    {% bootstrap_css %}
-    {% bootstrap_javascript%}
-</head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <input type="submit" class="btn btn-primary" value="Cadastrar"></input>
-    </form>
-    
-</body>
-</html>
+
+{% block title %}Formulário de Funcionário{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0"><i class="fa-solid fa-user-pen me-2"></i>Cadastro de Funcionário</h4>
+            </div>
+            <div class="card-body p-4">
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    
+                    {% bootstrap_form form %}
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a href="{% url 'lista_funcionarios' %}" class="btn btn-secondary me-md-2">
+                            <i class="fa-solid fa-arrow-left me-1"></i>Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa-solid fa-save me-1"></i>Salvar Dados
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
